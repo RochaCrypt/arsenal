@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Arsenal — Alexandre Rocha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#08090c; --panel:#0d1117; --panel2:#11161f; --line:#20141a;
+  --text:#e6edf3; --muted:#8b949e; --red:#ff2e4c; --red2:#3a0008;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:
+   radial-gradient(1200px 500px at 100% -10%,rgba(255,46,76,.18),transparent 60%),
+   var(--bg);
+   color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 18px 60px}
+header{text-align:center;margin-bottom:22px}
+.mono{font-family:'Fira Code',monospace}
+h1{font-size:clamp(30px,6vw,52px);font-weight:800;margin:.1em 0 .15em;
+   background:linear-gradient(90deg,#fff,#ff2e4c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:15px}
+.back{display:inline-flex;gap:8px;align-items:center;margin-top:14px;padding:9px 16px;border:1px solid var(--red);
+   border-radius:999px;color:#fff;background:rgba(255,46,76,.08);font-weight:600;font-size:13px;transition:.15s}
+.back:hover{background:var(--red)}
+.toolbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+   background:rgba(8,9,12,.9);backdrop-filter:blur(10px);
+   padding:14px 0;margin:18px 0;border-bottom:1px solid var(--line)}
+.search{width:100%;padding:14px 16px;border-radius:12px;border:1px solid #23303d;
+   background:var(--panel);color:var(--text);font-size:16px;font-family:'Fira Code',monospace;outline:none}
+.search:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(255,46,76,.15)}
+.rowline{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.chip{cursor:pointer;user-select:none;padding:7px 13px;border-radius:999px;font-size:12.5px;font-weight:600;
+   border:1px solid #2a2330;background:var(--panel2);color:var(--muted);transition:.12s;white-space:nowrap}
+.chip:hover{color:#fff;border-color:var(--red)}
+.chip.on{color:#fff;background:var(--red);border-color:var(--red)}
+.chip .c{opacity:.7;font-weight:400;margin-left:5px}
+.count{margin-left:auto;color:var(--muted);font-size:13px;font-family:'Fira Code',monospace}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid #1c2531;border-radius:14px;padding:16px;
+   display:flex;flex-direction:column;gap:8px;transition:.15s;position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent,#ff2e4c)}
+.card:hover{transform:translateY(-3px);border-color:var(--accent,#ff2e4c);box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.card h3{margin:0;font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px}
+.card p{margin:0;color:var(--muted);font-size:13.5px;flex:1}
+.meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}
+.tag{font-size:10.5px;font-weight:600;padding:3px 8px;border-radius:6px;font-family:'Fira Code',monospace}
+.tag.cat{background:color-mix(in srgb,var(--accent) 22%,#0d1117);color:#fff}
+.tag.off{background:rgba(255,46,76,.14);color:#ff8a9b}
+.tag.def{background:rgba(46,107,255,.16);color:#8fb4ff}
+.tag.both{background:rgba(148,163,184,.14);color:#c9d3df}
+.ext{font-size:11px;color:var(--muted);font-family:'Fira Code',monospace}
+.empty{text-align:center;color:var(--muted);padding:60px 0;font-family:'Fira Code',monospace}
+footer{margin-top:40px;text-align:center;color:var(--muted);font-size:12.5px}
+.warn{margin:22px 0;padding:12px 16px;border:1px solid var(--red2);border-left:3px solid var(--red);
+   border-radius:10px;background:rgba(58,0,8,.35);color:#e6c9cf;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="mono sub">root@rochacrypt:~# ls ~/arsenal</div>
+  <h1>🧰 Arsenal</h1>
+  <div class="sub">A curated catalog of security tools & scripts — search, filter, explore.</div>
+  <a class="back" href="https://github.com/RochaCrypt">← Back to profile</a>
+</header>
+
+<div class="warn">⚠️ Reference catalog for <b>authorised testing, defence and education only</b>. Tools link to their official sources. Only use them on systems you own or are permitted to test.</div>
+
+<div class="toolbar">
+  <input id="q" class="search" placeholder="🔎  Search 112 tools — name, description, category…" autocomplete="off"/>
+  <div class="rowline" id="tracks">
+    <span class="chip on" data-track="all">All</span>
+    <span class="chip" data-track="off">🔴 Offensive</span>
+    <span class="chip" data-track="def">🔵 Defensive</span>
+    <span class="chip" data-track="both">⚪ Both</span>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="rowline" id="cats"></div>
+</div>
+
+<div class="grid" id="grid"></div>
+<div class="empty" id="empty" style="display:none">// no tools match your filters</div>
+
+<footer>
+  Curated by <b>Alexandre Rocha</b> · <span class="mono">github.com/RochaCrypt</span><br/>
+  Tools are trademarks of their respective owners · list maintained for reference.
+</footer>
+</div>
+
+<script>
+const DATA = {"cats": {"recon": ["Recon & OSINT", "#ff2e4c"], "web": ["Web Application", "#ff7a1a"], "network": ["Network & Scanning", "#ffb02e"], "exploit": ["Exploitation & C2", "#e0213d"], "password": ["Password & Cracking", "#c9243a"], "ad": ["Active Directory", "#8a63ff"], "wireless": ["Wireless", "#2e6bff"], "privesc": ["Privilege Escalation", "#a3162e"], "cloud": ["Cloud & Container", "#2ecc71"], "dfir": ["Blue Team & DFIR", "#22b8cf"], "mobile": ["Mobile & RE", "#f06595"], "report": ["Reporting & Utility", "#94a3b8"], "mine": ["My Scripts ✔️", "#ff2e4c"]}, "tools": [{"name": "Nmap", "cat": "recon", "track": "off", "desc": "The de-facto network/port/service scanner.", "url": "https://nmap.org"}, {"name": "Masscan", "cat": "recon", "track": "off", "desc": "Internet-scale TCP port scanner, extremely fast.", "url": "https://github.com/robertdavidgraham/masscan"}, {"name": "Amass", "cat": "recon", "track": "off", "desc": "In-depth attack-surface & subdomain mapping (OWASP).", "url": "https://github.com/owasp-amass/amass"}, {"name": "Subfinder", "cat": "recon", "track": "off", "desc": "Fast passive subdomain enumeration.", "url": "https://github.com/projectdiscovery/subfinder"}, {"name": "theHarvester", "cat": "recon", "track": "off", "desc": "Emails, hosts and subdomains from public sources.", "url": "https://github.com/laramies/theHarvester"}, {"name": "Recon-ng", "cat": "recon", "track": "off", "desc": "Modular web reconnaissance framework.", "url": "https://github.com/lanmaster53/recon-ng"}, {"name": "SpiderFoot", "cat": "recon", "track": "both", "desc": "Automated OSINT collection & correlation.", "url": "https://github.com/smicallef/spiderfoot"}, {"name": "Maltego", "cat": "recon", "track": "both", "desc": "Link-analysis and OSINT graphing.", "url": "https://www.maltego.com"}, {"name": "Shodan", "cat": "recon", "track": "both", "desc": "Search engine for internet-exposed devices.", "url": "https://www.shodan.io"}, {"name": "dnsrecon", "cat": "recon", "track": "off", "desc": "DNS enumeration and record discovery.", "url": "https://github.com/darkoperator/dnsrecon"}, {"name": "Assetfinder", "cat": "recon", "track": "off", "desc": "Find domains and subdomains related to a target.", "url": "https://github.com/tomnomnom/assetfinder"}, {"name": "Photon", "cat": "recon", "track": "off", "desc": "Fast crawler for OSINT and endpoint discovery.", "url": "https://github.com/s0md3v/Photon"}, {"name": "Burp Suite", "cat": "web", "track": "off", "desc": "The standard web app testing proxy & scanner.", "url": "https://portswigger.net/burp"}, {"name": "OWASP ZAP", "cat": "web", "track": "off", "desc": "Open-source web app scanner and proxy.", "url": "https://www.zaproxy.org"}, {"name": "ffuf", "cat": "web", "track": "off", "desc": "Fast web fuzzer for content & parameter discovery.", "url": "https://github.com/ffuf/ffuf"}, {"name": "Gobuster", "cat": "web", "track": "off", "desc": "Directory, DNS and vhost brute-forcing.", "url": "https://github.com/OJ/gobuster"}, {"name": "dirsearch", "cat": "web", "track": "off", "desc": "Web path brute-forcer.", "url": "https://github.com/maurosoria/dirsearch"}, {"name": "Nuclei", "cat": "web", "track": "both", "desc": "Template-based vulnerability scanner.", "url": "https://github.com/projectdiscovery/nuclei"}, {"name": "sqlmap", "cat": "web", "track": "off", "desc": "Automated SQL injection detection & exploitation.", "url": "https://sqlmap.org"}, {"name": "Nikto", "cat": "web", "track": "off", "desc": "Web server misconfiguration scanner.", "url": "https://github.com/sullo/nikto"}, {"name": "wpscan", "cat": "web", "track": "off", "desc": "WordPress vulnerability scanner.", "url": "https://wpscan.com"}, {"name": "Arjun", "cat": "web", "track": "off", "desc": "Hidden HTTP parameter discovery.", "url": "https://github.com/s0md3v/Arjun"}, {"name": "XSStrike", "cat": "web", "track": "off", "desc": "Advanced XSS detection suite.", "url": "https://github.com/s0md3v/XSStrike"}, {"name": "whatweb", "cat": "web", "track": "off", "desc": "Web technology fingerprinting.", "url": "https://github.com/urbanadventurer/WhatWeb"}, {"name": "wafw00f", "cat": "web", "track": "off", "desc": "Detects and fingerprints WAFs.", "url": "https://github.com/EnableSecurity/wafw00f"}, {"name": "Commix", "cat": "web", "track": "off", "desc": "Automated command-injection testing.", "url": "https://github.com/commixproject/commix"}, {"name": "Wireshark", "cat": "network", "track": "both", "desc": "Deep packet capture and protocol analysis.", "url": "https://www.wireshark.org"}, {"name": "tcpdump", "cat": "network", "track": "both", "desc": "CLI packet capture.", "url": "https://www.tcpdump.org"}, {"name": "Nessus", "cat": "network", "track": "both", "desc": "Widely used vulnerability scanner.", "url": "https://www.tenable.com/products/nessus"}, {"name": "OpenVAS / GVM", "cat": "network", "track": "both", "desc": "Open-source vulnerability scanning.", "url": "https://openvas.org"}, {"name": "Netcat", "cat": "network", "track": "both", "desc": "The TCP/IP swiss-army knife.", "url": "http://netcat.sourceforge.net"}, {"name": "Responder", "cat": "network", "track": "off", "desc": "LLMNR/NBT-NS/mDNS poisoner for credential capture.", "url": "https://github.com/lgandx/Responder"}, {"name": "Bettercap", "cat": "network", "track": "off", "desc": "Network attacks & MITM framework.", "url": "https://www.bettercap.org"}, {"name": "hping3", "cat": "network", "track": "off", "desc": "Custom TCP/IP packet crafting.", "url": "https://github.com/antirez/hping"}, {"name": "arp-scan", "cat": "network", "track": "both", "desc": "Discover hosts on the local network.", "url": "https://github.com/royhills/arp-scan"}, {"name": "Nipe", "cat": "network", "track": "off", "desc": "Route traffic through Tor for anonymity.", "url": "https://github.com/htrgouvea/nipe"}, {"name": "Metasploit", "cat": "exploit", "track": "off", "desc": "Exploitation & post-exploitation framework.", "url": "https://www.metasploit.com"}, {"name": "searchsploit / Exploit-DB", "cat": "exploit", "track": "off", "desc": "Offline exploit database search.", "url": "https://www.exploit-db.com"}, {"name": "Sliver", "cat": "exploit", "track": "off", "desc": "Open-source adversary-emulation C2.", "url": "https://github.com/BishopFox/sliver"}, {"name": "Havoc", "cat": "exploit", "track": "off", "desc": "Modern post-exploitation C2 framework.", "url": "https://github.com/HavocFramework/Havoc"}, {"name": "Covenant", "cat": "exploit", "track": "off", "desc": ".NET command-and-control framework.", "url": "https://github.com/cobbr/Covenant"}, {"name": "MSFvenom", "cat": "exploit", "track": "off", "desc": "Payload generator (part of Metasploit).", "url": "https://www.metasploit.com"}, {"name": "Caldera", "cat": "exploit", "track": "both", "desc": "MITRE automated adversary emulation.", "url": "https://github.com/mitre/caldera"}, {"name": "Atomic Red Team", "cat": "exploit", "track": "both", "desc": "Library of ATT&CK-mapped test cases.", "url": "https://github.com/redcanaryco/atomic-red-team"}, {"name": "Hashcat", "cat": "password", "track": "off", "desc": "GPU-accelerated password recovery.", "url": "https://hashcat.net/hashcat/"}, {"name": "John the Ripper", "cat": "password", "track": "off", "desc": "Classic password cracker.", "url": "https://www.openwall.com/john/"}, {"name": "Hydra", "cat": "password", "track": "off", "desc": "Network login brute-forcer.", "url": "https://github.com/vanhauser-thc/thc-hydra"}, {"name": "Medusa", "cat": "password", "track": "off", "desc": "Parallel network brute-forcer.", "url": "https://github.com/jmk-foofus/medusa"}, {"name": "CeWL", "cat": "password", "track": "off", "desc": "Custom wordlist generator from a site.", "url": "https://github.com/digininja/CeWL"}, {"name": "Name-That-Hash", "cat": "password", "track": "both", "desc": "Identify hash types quickly.", "url": "https://github.com/HashPals/Name-That-Hash"}, {"name": "SecLists", "cat": "password", "track": "both", "desc": "Huge collection of wordlists & payloads.", "url": "https://github.com/danielmiessler/SecLists"}, {"name": "BloodHound", "cat": "ad", "track": "off", "desc": "Graphs Active Directory attack paths.", "url": "https://github.com/SpecterOps/BloodHound"}, {"name": "SharpHound", "cat": "ad", "track": "off", "desc": "BloodHound data collector.", "url": "https://github.com/SpecterOps/SharpHound"}, {"name": "Impacket", "cat": "ad", "track": "off", "desc": "Python classes for network protocols & AD.", "url": "https://github.com/fortra/impacket"}, {"name": "NetExec (CME)", "cat": "ad", "track": "off", "desc": "Swiss-army knife for AD/network attacks.", "url": "https://github.com/Pennyw0rth/NetExec"}, {"name": "Kerbrute", "cat": "ad", "track": "off", "desc": "Kerberos user enum & password spraying.", "url": "https://github.com/ropnop/kerbrute"}, {"name": "Rubeus", "cat": "ad", "track": "off", "desc": "Kerberos abuse toolkit.", "url": "https://github.com/GhostPack/Rubeus"}, {"name": "PowerView", "cat": "ad", "track": "off", "desc": "AD enumeration via PowerShell.", "url": "https://github.com/PowerShellMafia/PowerSploit"}, {"name": "Certipy", "cat": "ad", "track": "off", "desc": "AD Certificate Services abuse.", "url": "https://github.com/ly4k/Certipy"}, {"name": "ldapdomaindump", "cat": "ad", "track": "off", "desc": "Dump AD info over LDAP.", "url": "https://github.com/dirkjanm/ldapdomaindump"}, {"name": "Mimikatz", "cat": "ad", "track": "off", "desc": "Windows credential extraction (research).", "url": "https://github.com/gentilkiwi/mimikatz"}, {"name": "PingCastle", "cat": "ad", "track": "both", "desc": "AD security posture assessment.", "url": "https://www.pingcastle.com"}, {"name": "Aircrack-ng", "cat": "wireless", "track": "off", "desc": "Wi-Fi security auditing suite.", "url": "https://www.aircrack-ng.org"}, {"name": "Kismet", "cat": "wireless", "track": "both", "desc": "Wireless detector, sniffer and IDS.", "url": "https://www.kismetwireless.net"}, {"name": "Wifite2", "cat": "wireless", "track": "off", "desc": "Automated wireless auditing.", "url": "https://github.com/derv82/wifite2"}, {"name": "hcxdumptool", "cat": "wireless", "track": "off", "desc": "Capture WPA handshakes/PMKID.", "url": "https://github.com/ZerBea/hcxdumptool"}, {"name": "Reaver", "cat": "wireless", "track": "off", "desc": "WPS PIN attack tool.", "url": "https://github.com/t6x/reaver-wps-fork-t6x"}, {"name": "Flipper Zero", "cat": "wireless", "track": "both", "desc": "Multi-tool for RF, RFID and hardware testing.", "url": "https://flipperzero.one"}, {"name": "LinPEAS", "cat": "privesc", "track": "off", "desc": "Linux privilege-escalation enumeration.", "url": "https://github.com/peass-ng/PEASS-ng"}, {"name": "WinPEAS", "cat": "privesc", "track": "off", "desc": "Windows privilege-escalation enumeration.", "url": "https://github.com/peass-ng/PEASS-ng"}, {"name": "GTFOBins", "cat": "privesc", "track": "both", "desc": "Unix binaries abusable for privesc.", "url": "https://gtfobins.github.io"}, {"name": "LOLBAS", "cat": "privesc", "track": "both", "desc": "Living-off-the-land Windows binaries.", "url": "https://lolbas-project.github.io"}, {"name": "pspy", "cat": "privesc", "track": "off", "desc": "Snoop on processes without root.", "url": "https://github.com/DominicBreuker/pspy"}, {"name": "linux-exploit-suggester", "cat": "privesc", "track": "off", "desc": "Suggests kernel privesc exploits.", "url": "https://github.com/The-Z-Labs/linux-exploit-suggester"}, {"name": "Seatbelt", "cat": "privesc", "track": "off", "desc": "Windows host security checks.", "url": "https://github.com/GhostPack/Seatbelt"}, {"name": "ScoutSuite", "cat": "cloud", "track": "both", "desc": "Multi-cloud security auditing.", "url": "https://github.com/nccgroup/ScoutSuite"}, {"name": "Prowler", "cat": "cloud", "track": "both", "desc": "AWS/Azure/GCP security assessments.", "url": "https://github.com/prowler-cloud/prowler"}, {"name": "Pacu", "cat": "cloud", "track": "off", "desc": "AWS exploitation framework.", "url": "https://github.com/RhinoSecurityLabs/pacu"}, {"name": "kube-hunter", "cat": "cloud", "track": "both", "desc": "Kubernetes penetration testing.", "url": "https://github.com/aquasecurity/kube-hunter"}, {"name": "kube-bench", "cat": "cloud", "track": "both", "desc": "CIS Kubernetes benchmark checks.", "url": "https://github.com/aquasecurity/kube-bench"}, {"name": "Trivy", "cat": "cloud", "track": "both", "desc": "Container & IaC vulnerability scanner.", "url": "https://github.com/aquasecurity/trivy"}, {"name": "Checkov", "cat": "cloud", "track": "both", "desc": "Static analysis for IaC.", "url": "https://www.checkov.io"}, {"name": "Cartography", "cat": "cloud", "track": "both", "desc": "Maps infra assets & relationships.", "url": "https://github.com/lyft/cartography"}, {"name": "Volatility", "cat": "dfir", "track": "def", "desc": "Memory forensics framework.", "url": "https://www.volatilityfoundation.org"}, {"name": "Autopsy", "cat": "dfir", "track": "def", "desc": "GUI digital forensics platform.", "url": "https://www.autopsy.com"}, {"name": "YARA", "cat": "dfir", "track": "def", "desc": "Pattern matching for malware ID.", "url": "https://github.com/VirusTotal/yara"}, {"name": "Velociraptor", "cat": "dfir", "track": "def", "desc": "Endpoint visibility & DFIR at scale.", "url": "https://github.com/Velocidex/velociraptor"}, {"name": "Sigma", "cat": "dfir", "track": "def", "desc": "Generic signature format for SIEM.", "url": "https://github.com/SigmaHQ/sigma"}, {"name": "TheHive", "cat": "dfir", "track": "def", "desc": "Scalable incident response platform.", "url": "https://github.com/TheHive-Project/TheHive"}, {"name": "Wazuh", "cat": "dfir", "track": "def", "desc": "Open-source XDR & SIEM.", "url": "https://wazuh.com"}, {"name": "Zeek", "cat": "dfir", "track": "def", "desc": "Network security monitoring.", "url": "https://zeek.org"}, {"name": "Suricata", "cat": "dfir", "track": "def", "desc": "High-performance IDS/IPS.", "url": "https://suricata.io"}, {"name": "Sleuth Kit", "cat": "dfir", "track": "def", "desc": "Disk & filesystem forensics.", "url": "https://www.sleuthkit.org"}, {"name": "Chainsaw", "cat": "dfir", "track": "def", "desc": "Fast Windows event-log hunting.", "url": "https://github.com/WithSecureLabs/chainsaw"}, {"name": "Hayabusa", "cat": "dfir", "track": "def", "desc": "Windows event-log threat hunting.", "url": "https://github.com/Yamato-Security/hayabusa"}, {"name": "CyberChef", "cat": "dfir", "track": "both", "desc": "The cyber swiss-army knife for data.", "url": "https://gchq.github.io/CyberChef/"}, {"name": "MobSF", "cat": "mobile", "track": "off", "desc": "Mobile app security testing framework.", "url": "https://github.com/MobSF/Mobile-Security-Framework-MobSF"}, {"name": "Frida", "cat": "mobile", "track": "both", "desc": "Dynamic instrumentation toolkit.", "url": "https://frida.re"}, {"name": "objection", "cat": "mobile", "track": "off", "desc": "Runtime mobile exploration.", "url": "https://github.com/sensepost/objection"}, {"name": "Ghidra", "cat": "mobile", "track": "both", "desc": "NSA's software reverse-engineering suite.", "url": "https://ghidra-sre.org"}, {"name": "apktool", "cat": "mobile", "track": "both", "desc": "Reverse engineer Android APKs.", "url": "https://github.com/iBotPeaches/Apktool"}, {"name": "radare2", "cat": "mobile", "track": "both", "desc": "Reverse-engineering framework.", "url": "https://rada.re/n/"}, {"name": "SysReptor", "cat": "report", "track": "both", "desc": "Pentest reporting & collaboration.", "url": "https://docs.sysreptor.com"}, {"name": "Dradis", "cat": "report", "track": "both", "desc": "Reporting & collaboration for security teams.", "url": "https://dradisframework.com"}, {"name": "Faraday", "cat": "report", "track": "both", "desc": "Collaborative pentest management.", "url": "https://github.com/infobyte/faraday"}, {"name": "Obsidian", "cat": "report", "track": "both", "desc": "Markdown knowledge base for notes.", "url": "https://obsidian.md"}, {"name": "Draw.io", "cat": "report", "track": "both", "desc": "Diagramming for architecture & attack paths.", "url": "https://www.drawio.com"}, {"name": "nmap-quickscan.sh", "cat": "mine", "track": "both", "desc": "Structured Nmap sweep with organised output.", "url": "./recon/nmap-quickscan.sh"}, {"name": "findings-to-report.py", "cat": "mine", "track": "both", "desc": "Findings JSON → CSV + Markdown report.", "url": "./reporting/findings-to-report.py"}, {"name": "ir-triage.ps1", "cat": "mine", "track": "def", "desc": "Read-only Windows IR host snapshot.", "url": "./blue-team/ir-triage.ps1"}, {"name": "auth-log-triage.py", "cat": "mine", "track": "def", "desc": "Summarise SSH auth logs, flag brute-force.", "url": "./blue-team/auth-log-triage.py"}, {"name": "password-policy-check.py", "cat": "mine", "track": "def", "desc": "Validate passwords vs policy + entropy.", "url": "./utils/password-policy-check.py"}]};
+const CATS = DATA.cats, TOOLS = DATA.tools;
+let curTrack="all", curCat="all", q="";
+
+const catsEl=document.getElementById('cats');
+const chip=(label,val,extra)=>{const s=document.createElement('span');s.className='chip'+(val==='all'?' on':'');
+  s.dataset.cat=val;s.innerHTML=label+(extra!=null?'<span class="c">'+extra+'</span>':'');return s;};
+catsEl.appendChild(chip('All','all',TOOLS.length));
+Object.entries(CATS).forEach(([k,v])=>{
+  const n=TOOLS.filter(t=>t.cat===k).length;
+  catsEl.appendChild(chip(v[0],k,n));
+});
+
+function activate(container,attr,val){
+  [...container.children].forEach(c=>c.classList.toggle('on',c.dataset[attr]===val));
+}
+document.getElementById('tracks').addEventListener('click',e=>{
+  const c=e.target.closest('.chip'); if(!c)return; curTrack=c.dataset.track; activate(document.getElementById('tracks'),'track',curTrack); render();});
+catsEl.addEventListener('click',e=>{
+  const c=e.target.closest('.chip'); if(!c)return; curCat=c.dataset.cat; activate(catsEl,'cat',curCat); render();});
+document.getElementById('q').addEventListener('input',e=>{q=e.target.value.toLowerCase();render();});
+
+const grid=document.getElementById('grid'), empty=document.getElementById('empty'), count=document.getElementById('count');
+const TRACKLBL={off:'offensive',def:'defensive',both:'both'};
+function render(){
+  const list=TOOLS.filter(t=>
+    (curTrack==='all'||t.track===curTrack) &&
+    (curCat==='all'||t.cat===curCat) &&
+    (!q || (t.name+' '+t.desc+' '+CATS[t.cat][0]).toLowerCase().includes(q)));
+  count.textContent=list.length+' / '+TOOLS.length;
+  grid.innerHTML='';
+  empty.style.display=list.length?'none':'block';
+  for(const t of list){
+    const a=CATS[t.cat][1];
+    const el=document.createElement('a');
+    el.className='card';el.style.setProperty('--accent',a);
+    el.href=t.url; el.target=t.url.startsWith('http')?'_blank':'_self'; el.rel='noopener';
+    el.innerHTML=`<h3>${t.name}</h3><p>${t.desc}</p>
+      <div class="meta"><span class="tag cat">${CATS[t.cat][0]}</span>
+      <span class="tag ${t.track}">${TRACKLBL[t.track]}</span></div>
+      <span class="ext">${t.url.startsWith('http')?t.url.replace(/^https?:\/\//,'').split('/')[0]:'📄 '+t.url}</span>`;
+    grid.appendChild(el);
+  }
+}
+render();
+</script>
+</body>
+</html>
