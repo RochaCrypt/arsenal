@@ -21,11 +21,11 @@ recon/   reporting/   blue-team/   utils/
 
 ### 🔗 [**Open the interactive catalog →**](https://rochacrypt.github.io/arsenal/)
 
-<sub>112 tools · search & filter by category and track · works on mobile</sub>
+<sub>230 tools · search & filter by category and track · works on mobile</sub>
 
 </div>
 
-A curated set of **operational security scripts and helpers** I use to speed up day-to-day work — recon organisation, reporting, blue-team triage and small utilities. Everything here is built for **defensive work and authorised testing only**.
+A curated catalog of **230 well-known security tools** plus my own operational scripts I use to speed up day-to-day work — recon organisation, reporting, blue-team triage and small utilities. Everything here is built for **defensive work and authorised testing only**.
 
 ## 📂 Categories
 
@@ -70,7 +70,7 @@ python3 utils/password-policy-check.py --min-length 14
 
 ## 🌐 Live catalog (GitHub Pages)
 
-The [`index.html`](./index.html) page is a **searchable, filterable catalog of 112 tools** across 13 categories. To publish it:
+The [`index.html`](./index.html) page is a **searchable, filterable catalog of 230 tools** across 13 categories. To publish it:
 
 1. Go to **Settings → Pages**.
 2. Under *Build and deployment*, set **Source: Deploy from a branch**.
